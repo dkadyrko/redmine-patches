@@ -15,4 +15,8 @@ ActionDispatch::Callbacks.to_prepare do
     require_dependency 'overrides/redmine_tags_override'
     require_dependency 'overrides/application_helper_override'
   end
+
+  if Redmine::Plugin.installed?(:redmine_wktime) && Redmine::Plugin.find(:redmine_wktime).version == '3.1'
+    require_dependency 'overrides/timelogcontroller_override'
+  end
 end
